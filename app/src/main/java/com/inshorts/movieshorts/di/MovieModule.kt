@@ -13,22 +13,18 @@ import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
 class MovieModule {
-
     @Provides
+    @Named("MOVIE_BASE_URL")
     fun getBaseUrl() = "https://api.themoviedb.org/3/"
 
     @Provides
+    @Named("TMDB_API_KEY")
     fun getAPIKey() = BuildConfig.TMDB_API_KEY
-
-    @Provides
-    @Singleton
-    fun provideContext(application: Application): Context {
-        return application.applicationContext
-    }
 
     @Provides
     @Singleton
@@ -59,7 +55,7 @@ class MovieModule {
     @Provides
     fun getMovieRepository(
         apiService: TMDBAPIService,
-        apiKey: String,
+        @Named("TMDB_API_KEY") apiKey: String,
         movieDao: MovieDao
     ): MovieRepository {
         return MovieRepositoryImpl(apiService, movieDao, apiKey)

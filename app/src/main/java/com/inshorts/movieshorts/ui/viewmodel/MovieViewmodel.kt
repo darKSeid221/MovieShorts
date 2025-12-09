@@ -1,12 +1,12 @@
 package com.inshorts.movieshorts.ui.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.inshorts.movieshorts.domain.NowPlayingMovieUseCase
 import com.inshorts.movieshorts.domain.TrendingMovieUseCase
 import com.inshorts.movieshorts.domain.model.Movie
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -15,15 +15,20 @@ class MovieViewmodel @Inject constructor(
     private val trendingMovieUseCase: TrendingMovieUseCase
 ) : ViewModel() {
 
-    private  var nowPlayingList =  MutableLiveData<List<Movie>> ()
-    val liveDataNowPlayingList:LiveData<List<Movie>> = nowPlayingList
+    private val _trendingPreview = MutableStateFlow<List<Movie>>(emptyList())
+    val trendingPreview: StateFlow<List<Movie>> = _trendingPreview
+    private val _nowPreview = MutableStateFlow<List<Movie>>(emptyList())
+    val nowPreview: StateFlow<List<Movie>> = _nowPreview
 
-    fun getNowPlayingMovie(offset:Int, page:Int){
+    init {
+        loadPreviews()
+    }
+
+    private fun loadPreviews() {
         viewModelScope.launch {
-            val list = nowPlayingMovieUseCase.invoke()
-            if(list.isNotEmpty()){
-                nowPlayingList.postValue(list)
-            }
+            _trendingPreview.value = trendingMovieUseCase.invoke()
+            _nowPreview.value = nowPlayingMovieUseCase.invoke()
         }
     }
+
 }

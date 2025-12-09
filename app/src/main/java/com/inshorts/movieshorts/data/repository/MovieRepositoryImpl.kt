@@ -8,11 +8,12 @@ import com.inshorts.movieshorts.data.remote.dto.ResultsItemTrending
 import com.inshorts.movieshorts.domain.model.Movie
 import com.inshorts.movieshorts.domain.repository.MovieRepository
 import javax.inject.Inject
+import javax.inject.Named
 
 class MovieRepositoryImpl @Inject constructor(
     private val api: TMDBAPIService,
     private val dao: MovieDao,
-    private val apiKey: String
+    @Named("TMDB_API_KEY") private val apiKey: String
 ) : MovieRepository {
 
     // For Home screen: return a few items (previews). Try DB first, fallback
