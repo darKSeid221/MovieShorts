@@ -18,11 +18,11 @@ plugins {
 }
 
 android {
-    namespace = "com.inshorts.movieshorts"
+    namespace = "com.byteberserker.movieshorts"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.inshorts.movieshorts"
+        applicationId = "com.byteberserker.movieshorts"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
