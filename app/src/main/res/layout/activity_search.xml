@@ -6,46 +6,41 @@
     android:background="@color/black"
     android:orientation="vertical">
 
-    <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/surface"
-        android:elevation="4dp"
-        app:title="Search Movies"
+        android:elevation="@dimen/elevation_small"
+        app:title="@string/title_search_movies"
         app:titleTextColor="@color/white" />
 
-    <!-- Search Input -->
     <EditText
         android:id="@+id/etSearchInput"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_margin="16dp"
+        android:layout_height="@dimen/search_input_height"
+        android:layout_margin="@dimen/margin_normal"
         android:background="@color/surface"
         android:drawableStart="@drawable/ic_search_white"
-        android:drawablePadding="12dp"
-        android:hint="Search for movies..."
+        android:drawablePadding="@dimen/drawable_padding_normal"
+        android:hint="@string/hint_search_movies"
         android:imeOptions="actionSearch"
         android:inputType="text"
-        android:paddingHorizontal="16dp"
+        android:paddingHorizontal="@dimen/padding_normal"
         android:textColor="@color/white"
-        android:textColorHint="#88FFFFFF" />
+        android:textColorHint="@color/text_hint" />
 
-    <!-- Content Frame -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- Search Results RecyclerView -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvSearchResults"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:padding="8dp" />
+            android:padding="@dimen/padding_small" />
 
-        <!-- Loading Indicator -->
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
@@ -53,15 +48,14 @@
             android:layout_gravity="center"
             android:visibility="gone" />
 
-        <!-- Empty State -->
         <TextView
             android:id="@+id/tvEmptyState"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Start typing to search for movies"
-            android:textColor="#88FFFFFF"
-            android:textSize="16sp"
+            android:text="@string/empty_state_search"
+            android:textColor="@color/text_hint"
+            android:textSize="@dimen/text_size_normal"
             android:visibility="visible" />
     </FrameLayout>
 </LinearLayout>

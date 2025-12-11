@@ -28,7 +28,9 @@ class MovieRepositoryImpl @Inject constructor(
             val movies = response.results?.map { it.toDomain() } ?: emptyList()
             
             if (movies.isNotEmpty()) {
-                dao.insertAll(response.results!!.map { it.toEntity("now_playing", 1) })
+                response.results?.let { results ->
+                    dao.insertAll(results.map { it.toEntity("now_playing", 1) })
+                }
             }
             
             movies.take(limit)
@@ -47,7 +49,9 @@ class MovieRepositoryImpl @Inject constructor(
             val movies = response.results?.map { it.toDomain() } ?: emptyList()
             
             if (movies.isNotEmpty()) {
-                dao.insertAll(response.results!!.map { it.toEntity("trending", 1) })
+                response.results?.let { results ->
+                    dao.insertAll(results.map { it.toEntity("trending", 1) })
+                }
             }
             
             movies.take(limit)
@@ -64,32 +68,32 @@ class MovieRepositoryImpl @Inject constructor(
     )
 
     private fun ResultsItemNowPlaying.toDomain() = Movie(
-        id = id!!, title = title!!, overview
-        = overview!!, posterPath = posterPath, backdropPath = backdropPath,
+        id = id ?: -1, title = title ?: "", overview
+        = overview ?: "", posterPath = posterPath, backdropPath = backdropPath,
         releaseDate = releaseDate
     )
 
     private fun ResultsItemTrending.toDomain() = Movie(
-        id = id!!, title = title!!, overview
-        = overview!!, posterPath = posterPath, backdropPath = backdropPath,
+        id = id ?: -1, title = title ?: "", overview
+        = overview ?: "", posterPath = posterPath, backdropPath = backdropPath,
         releaseDate = releaseDate
     )
 
     private fun com.byteberserker.movieshorts.data.remote.dto.ResultsItemSearch.toDomain() = Movie(
-        id = id!!, title = title!!, overview
-        = overview!!, posterPath = posterPath, backdropPath = backdropPath,
+        id = id ?: -1, title = title ?: "", overview
+        = overview ?: "", posterPath = posterPath, backdropPath = backdropPath,
         releaseDate = releaseDate
     )
 
     private fun ResultsItemNowPlaying.toEntity(category: String, page: Int) = MovieEntity(
-        id = id!!, title = title!!, overview =
-        overview!!, posterPath = posterPath, backdropPath = backdropPath,
+        id = id ?: -1, title = title ?: "", overview =
+        overview ?: "", posterPath = posterPath, backdropPath = backdropPath,
         releaseDate = releaseDate, category = category, page = page
     )
 
     private fun ResultsItemTrending.toEntity(category: String, page: Int) = MovieEntity(
-        id = id!!, title = title!!, overview =
-        overview!!, posterPath = posterPath, backdropPath = backdropPath,
+        id = id ?: -1, title = title ?: "", overview =
+        overview ?: "", posterPath = posterPath, backdropPath = backdropPath,
         releaseDate = releaseDate, category = category, page = page
     )
 

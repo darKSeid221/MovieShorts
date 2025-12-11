@@ -6,21 +6,17 @@
     android:layout_height="match_parent"
     android:background="@color/black">
 
-
-    <!-- =================================================== -->
-    <!-- ⭐ FIXED SEARCH BAR AT TOP ⭐ -->
-    <!-- =================================================== -->
     <LinearLayout
         android:id="@+id/searchBar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/bg_home_search"
-        android:elevation="20dp"
-        android:layout_margin="8dp"
+        android:elevation="@dimen/elevation_xxlarge"
+        android:layout_margin="@dimen/margin_medium"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingHorizontal="16dp"
-        android:translationZ="20dp">
+        android:paddingHorizontal="@dimen/padding_normal"
+        android:translationZ="@dimen/elevation_xxlarge">
 
         <EditText
             android:id="@+id/etSearch"
@@ -30,9 +26,9 @@
             android:drawableStart="@drawable/ic_search_white"
             android:background="@android:color/transparent"
             android:hint="Search movies, shows"
-            android:paddingHorizontal="12dp"
+            android:paddingHorizontal="@dimen/margin_large"
             android:textColor="@color/white"
-            android:textColorHint="#88FFFFFF"
+            android:textColorHint="@color/text_hint"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="false"
@@ -40,11 +36,7 @@
 
     </LinearLayout>
 
-
-    <!-- =================================================== -->
-    <!-- ⭐ MAIN CONTENT INCLUDING HERO (SCROLLS) ⭐ -->
-    <!-- =================================================== -->
-    <androidx.core.widget.NestedScrollView
+ <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -58,10 +50,9 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- ⭐ HERO IMAGE (PARALLAX + FADE TARGET) ⭐ -->
             <androidx.cardview.widget.CardView
-                android:layout_margin="8dp"
-                app:cardCornerRadius="12dp"
+                android:layout_margin="@dimen/margin_medium"
+                app:cardCornerRadius="@dimen/corner_radius_large"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <ImageView
@@ -73,14 +64,12 @@
             </androidx.cardview.widget.CardView>
 
 
-            <!-- ⭐ CONTENT ⭐ -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="@dimen/padding_normal">
 
-                <!-- Trending -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -92,7 +81,7 @@
                         android:layout_weight="1"
                         android:text="Trending"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/text_size_medium" />
 
                     <TextView
                         android:id="@+id/tvSeeAllTrending"
@@ -106,10 +95,9 @@
                     android:id="@+id/rvTrendingHome"
                     android:layout_width="match_parent"
                     android:layout_height="160dp"
-                    android:layout_marginTop="12dp" />
+                    android:layout_marginTop="@dimen/margin_large" />
 
 
-                <!-- Now Playing -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -122,7 +110,7 @@
                         android:layout_weight="1"
                         android:text="Now Playing"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/text_size_medium" />
 
                     <TextView
                         android:id="@+id/tvSeeAllNow"
@@ -136,26 +124,22 @@
                     android:id="@+id/rvNowHome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp" />
+                    android:layout_marginTop="@dimen/margin_large" />
             </LinearLayout>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-
-    <!-- =================================================== -->
-    <!-- ⭐ FIXED BOTTOM NAVIGATION ⭐ -->
-    <!-- =================================================== -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_gravity="bottom"
         android:background="@color/surface"
-        android:elevation="20dp"
+        android:elevation="@dimen/elevation_xxlarge"
         android:fitsSystemWindows="false"
         app:labelVisibilityMode="unlabeled"
-        android:translationZ="20dp"
+        android:translationZ="@dimen/elevation_xxlarge"
         app:itemIconTint="@color/selector_nav_item"
         app:itemTextColor="@color/selector_nav_item"
         app:menu="@menu/menu_bottom" />

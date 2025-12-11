@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
-        android:elevation="4dp"
+        android:elevation="@dimen/elevation_medium"
         app:title="Detail"
         app:navigationIcon="@drawable/ic_back"
         app:titleTextColor="@color/white" />
@@ -24,45 +24,45 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="@dimen/padding_normal">
 
         <ImageView
             android:id="@+id/ivPoster"
             android:layout_width="match_parent"
             android:layout_height="350dp"
-            android:background="#222"
+            android:background="@color/placeholder_bg"
             android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/margin_normal"
             android:fontFamily="sans-serif-medium"
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="@dimen/text_size_xlarge" />
 
         <TextView
             android:id="@+id/tvRelease"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="@dimen/elevation_large"
             android:textColor="@color/accent" />
 
         <ImageView
             android:id="@+id/btnBookmark"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/margin_large"
             android:src="@drawable/ic_bookmark" />
 
         <TextView
             android:id="@+id/tvOverview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:textColor="#CCFFFFFF"
-            android:textSize="14sp" />
+            android:layout_marginTop="@dimen/margin_large"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_size_small" />
 
         </LinearLayout>
     </ScrollView>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="140dp"
+    android:layout_width="@dimen/poster_width_medium"
     android:layout_height="match_parent"
-    android:layout_marginEnd="12dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="6dp">
+    android:layout_marginEnd="@dimen/margin_large"
+    app:cardCornerRadius="@dimen/corner_radius_large"
+    app:cardElevation="@dimen/elevation_large">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -21,14 +21,14 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_gravity="bottom"
-            android:background="#66000000" />
+            android:background="@color/overlay_dark" />
 
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:layout_margin="8dp"
+            android:layout_margin="@dimen/margin_medium"
             android:ellipsize="end"
             android:maxLines="1"
             android:textColor="@color/white"

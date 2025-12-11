@@ -15,6 +15,7 @@ import com.byteberserker.movieshorts.ui.viewmodel.MainViewModelFactory
 import com.byteberserker.movieshorts.ui.viewmodel.SearchViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import com.byteberserker.movieshorts.R
 import javax.inject.Inject
 
 class SearchActivity : BaseActivity() {
@@ -72,9 +73,9 @@ class SearchActivity : BaseActivity() {
                     binding.rvSearchResults.visibility = View.GONE
                     binding.tvEmptyState.visibility = View.VISIBLE
                     binding.tvEmptyState.text = if (binding.etSearchInput.text.toString().length >= 2) {
-                        "No movies found"
+                        getString(R.string.no_movies_found)
                     } else {
-                        "Start typing to search for movies"
+                        getString(R.string.empty_state_search)
                     }
                 } else {
                     binding.rvSearchResults.visibility = View.VISIBLE
@@ -99,14 +100,14 @@ class SearchActivity : BaseActivity() {
 
     private fun shareMovie(movie: Movie) {
         val deepLink = "movieshorts://movie/${movie.id}?title=${movie.title}"
-        val shareText = "Check out this movie: ${movie.title}\n\n$deepLink"
+        val shareText = getString(R.string.share_movie_text, movie.title, deepLink)
         
         val shareIntent = Intent(Intent.ACTION_SEND).apply {
             type = "text/plain"
             putExtra(Intent.EXTRA_TEXT, shareText)
-            putExtra(Intent.EXTRA_SUBJECT, "Movie Recommendation")
+            putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_movie_subject))
         }
-        startActivity(Intent.createChooser(shareIntent, "Share movie"))
+        startActivity(Intent.createChooser(shareIntent, getString(R.string.share_movie_chooser)))
     }
 
     override fun onSupportNavigateUp(): Boolean {

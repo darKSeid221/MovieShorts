@@ -3,34 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
+    android:layout_margin="@dimen/margin_small"
     app:cardBackgroundColor="@color/surface"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="2dp">
+    app:cardCornerRadius="@dimen/corner_radius"
+    app:cardElevation="@dimen/elevation_tiny">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:padding="@dimen/padding_small">
 
-        <!-- Poster Thumbnail -->
         <ImageView
             android:id="@+id/ivPoster"
-            android:layout_width="80dp"
-            android:layout_height="120dp"
-            android:background="#222"
+            android:layout_width="@dimen/poster_width_small"
+            android:layout_height="@dimen/poster_height_small"
+            android:background="@color/placeholder_bg"
             android:scaleType="centerCrop" />
 
-        <!-- Movie Info -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="@dimen/margin_large"
             android:orientation="vertical">
 
-            <!-- Title -->
             <TextView
                 android:id="@+id/tvTitle"
                 android:layout_width="match_parent"
@@ -38,7 +35,7 @@
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_size_normal"
                 android:textStyle="bold" />
 
             <!-- Release Year -->
@@ -46,29 +43,27 @@
                 android:id="@+id/tvReleaseYear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="@dimen/margin_small"
                 android:textColor="@color/accent"
-                android:textSize="14sp" />
+                android:textSize="@dimen/text_size_small" />
 
-            <!-- Overview -->
             <TextView
                 android:id="@+id/tvOverview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/margin_medium"
                 android:ellipsize="end"
                 android:maxLines="3"
-                android:textColor="#CCFFFFFF"
-                android:textSize="12sp" />
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_size_tiny" />
         </LinearLayout>
 
-        <!-- Share Button -->
         <ImageView
             android:id="@+id/btnShare"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/icon_size_large"
+            android:layout_height="@dimen/icon_size_large"
             android:layout_gravity="center_vertical"
-            android:padding="8dp"
+            android:padding="@dimen/padding_small"
             android:src="@android:drawable/ic_menu_share"
             app:tint="@color/accent" />
     </LinearLayout>

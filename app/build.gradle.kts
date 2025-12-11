@@ -40,10 +40,6 @@ android {
             )
             val tmdbApiKey = localProperties.getProperty("TMDB_API_KEY")
                 ?: throw Exception("'TMDB_API_KEY' not found in local.properties. Please add it.")
-
-            // Option 1: Use resValue (Recommended for security)
-            // Creates a string resource accessible via R.string.tmdb_api_key
-           // resValue("string", "tmdb_api_key", tmdbApiKey)
             buildConfigField("String", "TMDB_API_KEY", "\"$tmdbApiKey\"")
         }
 
@@ -51,10 +47,6 @@ android {
             isMinifyEnabled = false
             val tmdbApiKey = localProperties.getProperty("TMDB_API_KEY")
                 ?: throw Exception("'TMDB_API_KEY' not found in local.properties. Please add it.")
-
-            // Option 1: Use resValue (Recommended for security)
-            // Creates a string resource accessible via R.string.tmdb_api_key
-            // resValue("string", "tmdb_api_key", tmdbApiKey)
             buildConfigField("String", "TMDB_API_KEY", "\"$tmdbApiKey\"")
         }
     }

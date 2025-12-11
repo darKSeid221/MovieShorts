@@ -11,7 +11,7 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [MovieModule::class])
+@Component(modules = [NetworkModule::class, DatabaseModule::class, RepoModule::class])
 interface AppComponent {
     fun inject(activity: HomeActivity)
     fun inject(activity: ProfileActivity)

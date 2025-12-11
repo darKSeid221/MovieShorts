@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="elevation_small">4dp</dimen>
+    <dimen name="search_input_height">56dp</dimen>
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="padding_normal">16dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="drawable_padding_normal">12dp</dimen>
+    <dimen name="text_size_normal">16sp</dimen>
+    <!-- Grid Item Dimensions -->
+    <dimen name="margin_small">4dp</dimen>
+    <dimen name="corner_radius">8dp</dimen>
+    <dimen name="elevation_tiny">2dp</dimen>
+    <dimen name="poster_height">200dp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+
+    <!-- General Margins -->
+    <dimen name="margin_medium">8dp</dimen>
+    <dimen name="margin_large">12dp</dimen>
+    <dimen name="margin_xlarge">20dp</dimen>
+
+    <!-- Evaluations -->
+    <dimen name="elevation_medium">4dp</dimen>
+    <dimen name="elevation_large">6dp</dimen>
+    <dimen name="elevation_xlarge">10dp</dimen>
+    <dimen name="elevation_xxlarge">20dp</dimen>
+
+    <!-- Corner Radius -->
+    <dimen name="corner_radius_large">12dp</dimen>
+    <dimen name="corner_radius_xlarge">16dp</dimen>
+    <dimen name="corner_radius_xxlarge">18dp</dimen>
+
+    <!-- Sizes -->
+    <dimen name="poster_width_small">80dp</dimen>
+    <dimen name="poster_height_small">120dp</dimen>
+    <dimen name="poster_width_medium">140dp</dimen>
+    <dimen name="poster_height_medium">220dp</dimen>
+    <dimen name="banner_height">200dp</dimen>
+    <dimen name="icon_size">24dp</dimen>
+    <dimen name="icon_size_large">40dp</dimen>
+
+    <!-- Text Sizes -->
+    <dimen name="text_size_tiny">12sp</dimen>
+    <dimen name="text_size_medium">18sp</dimen>
+    <dimen name="text_size_large">20sp</dimen>
+    <dimen name="text_size_xlarge">24sp</dimen>
+    <dimen name="text_size_xxlarge">26sp</dimen>
+</resources>
