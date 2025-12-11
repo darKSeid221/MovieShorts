@@ -7,7 +7,7 @@ import android.os.Looper
 
 class SplashActivity : BaseActivity() {
 
-    private val splashDuration = 1000L // 1 seconds
+    private val splashDuration = 1L // 1 seconds
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

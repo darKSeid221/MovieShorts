@@ -31,7 +31,9 @@ class HomeActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        enableEdgeToEdge(
+            statusBarStyle = androidx.activity.SystemBarStyle.dark(android.graphics.Color.BLACK)
+        )
         DaggerAppComponent.factory().create(this).inject(this)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -45,20 +47,7 @@ class HomeActivity : BaseActivity() {
 
             // ⭐ Parallax effect
             hero.translationY = scrollY * 0.5f
-
-            // ⭐ Fade-out hero
-            val fade = 1f - (scrollY / 300f)
-            hero.alpha = fade.coerceIn(0f, 1f)
-
-            // ⭐ Shrink search bar
-            val minH = 50f.dp
-            val maxH = 60f.dp
-            val newH = (maxH - (scrollY / 12f)).coerceIn(minH, maxH)
-            search.layoutParams.height = newH.toInt()
-            search.requestLayout()
-            search.alpha = (0.85f + (scrollY / 800f)).coerceAtMost(1f)
         }
-
 
 
         observe()
@@ -85,20 +74,16 @@ class HomeActivity : BaseActivity() {
             startListActivity("now_playing")
         }
 
-        // Search focus listener - launch SearchActivity
         binding.etSearch.setOnClickListener {
             startActivity(Intent(this, SearchActivity::class.java))
         }
 
-        // Bottom navigation listener
         binding.bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 com.byteberserker.movieshorts.R.id.nav_home -> {
-                    // Already on home
                     true
                 }
                 com.byteberserker.movieshorts.R.id.nav_search -> {
-                    // Launch SearchActivity
                     startActivity(Intent(this, SearchActivity::class.java))
                     true
                 }

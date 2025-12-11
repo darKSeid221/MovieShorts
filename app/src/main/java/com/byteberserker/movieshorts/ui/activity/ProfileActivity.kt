@@ -59,7 +59,6 @@ class ProfileActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        // Reload bookmarks when returning to this activity
         loadBookmarks()
     }
 

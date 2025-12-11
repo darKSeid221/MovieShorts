@@ -26,7 +26,6 @@ class MovieViewmodel @Inject constructor(
     }
 
     private fun loadPreviews() {
-        // Launch separate coroutines for each API call to prevent one from blocking the other
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val trending = trendingMovieUseCase.invoke()

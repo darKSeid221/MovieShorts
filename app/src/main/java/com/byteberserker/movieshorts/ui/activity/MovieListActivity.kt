@@ -49,7 +49,6 @@ class MovieListActivity : BaseActivity() {
         binding.rvMovies.layoutManager = layoutManager
         binding.rvMovies.adapter = adapter
 
-        // Pagination scroll listener
         binding.rvMovies.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)

@@ -24,7 +24,6 @@ class MovieDetailActivity : BaseActivity() {
         binding = ActivityMovieDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         
-        // Setup toolbar with back button
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
@@ -32,14 +31,12 @@ class MovieDetailActivity : BaseActivity() {
             finish()
         }
         
-        // Handle both regular intent and deep link
         val movie = intent.getParcelableExtra<Movie>("movie")
         if (movie != null) {
             currentMovie = movie
             setupUI(movie)
             loadBookmarkStatus(movie.id)
         } else {
-            // Handle deep link
             handleDeepLink()
         }
     }
@@ -51,7 +48,6 @@ class MovieDetailActivity : BaseActivity() {
             val movieTitle = data.getQueryParameter("title")
             
             if (movieId != null) {
-                // Create a minimal movie object - in production, you'd fetch full details from API
                 val movie = Movie(
                     id = movieId,
                     title = movieTitle ?: "Movie",

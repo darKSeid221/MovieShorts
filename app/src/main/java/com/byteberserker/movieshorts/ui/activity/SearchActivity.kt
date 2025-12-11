@@ -60,6 +60,9 @@ class SearchActivity : BaseActivity() {
         binding.etSearchInput.addTextChangedListener { text ->
             viewModel.updateSearchQuery(text.toString())
         }
+        binding.etSearchInput.requestFocus()
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
+        imm.showSoftInput(binding.etSearchInput, android.view.inputmethod.InputMethodManager.SHOW_IMPLICIT)
     }
 
     private fun observeSearchResults() {

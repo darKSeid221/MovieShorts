@@ -13,9 +13,10 @@
     <LinearLayout
         android:id="@+id/searchBar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/bg_search_blur"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_home_search"
         android:elevation="20dp"
+        android:layout_margin="8dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingHorizontal="16dp"
@@ -47,7 +48,7 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="64dp"
         android:layout_marginBottom="70dp"
         android:clipToPadding="false"
         android:overScrollMode="never">
@@ -155,7 +156,7 @@
         android:fitsSystemWindows="false"
         app:labelVisibilityMode="unlabeled"
         android:translationZ="20dp"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/selector_nav_item"
+        app:itemTextColor="@color/selector_nav_item"
         app:menu="@menu/menu_bottom" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

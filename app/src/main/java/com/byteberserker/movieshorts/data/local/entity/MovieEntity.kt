@@ -11,6 +11,6 @@ data class MovieEntity(
     val posterPath: String?,
     val backdropPath: String?,
     val releaseDate: String?,
-    val category: String, // e.g. "now_playing" or "trending"
+    val category: String, // "now_playing" or "trending"
     val page: Int // page number when saved
 )

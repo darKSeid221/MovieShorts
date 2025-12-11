@@ -19,8 +19,6 @@ class MovieRepositoryImpl @Inject constructor(
     @Named("TMDB_API_KEY") private val apiKey: String
 ) : MovieRepository {
 
-    // For Home screen: return a few items (previews). Try DB first, fallback
-    //to network page=1.
     override suspend fun getNowPlayingPreview(limit: Int): List<Movie> {
         return try {
             val cached = dao.getLimited("now_playing", limit)
@@ -29,7 +27,6 @@ class MovieRepositoryImpl @Inject constructor(
             val response = api.getNowPlaying(apiKey, 1)
             val movies = response.results?.map { it.toDomain() } ?: emptyList()
             
-            // cache
             if (movies.isNotEmpty()) {
                 dao.insertAll(response.results!!.map { it.toEntity("now_playing", 1) })
             }
@@ -37,7 +34,6 @@ class MovieRepositoryImpl @Inject constructor(
             movies.take(limit)
         } catch (e: Exception) {
             e.printStackTrace()
-            // Return cached data even if old, or empty list
             dao.getLimited("now_playing", limit).map { it.toDomain() }
         }
     }
@@ -50,7 +46,6 @@ class MovieRepositoryImpl @Inject constructor(
             val response = api.getTrending(apiKey, 1)
             val movies = response.results?.map { it.toDomain() } ?: emptyList()
             
-            // cache
             if (movies.isNotEmpty()) {
                 dao.insertAll(response.results!!.map { it.toEntity("trending", 1) })
             }
@@ -58,7 +53,6 @@ class MovieRepositoryImpl @Inject constructor(
             movies.take(limit)
         } catch (e: Exception) {
             e.printStackTrace()
-            // Return cached data even if old, or empty list
             dao.getLimited("trending", limit).map { it.toDomain() }
         }
     }
@@ -99,7 +93,6 @@ class MovieRepositoryImpl @Inject constructor(
         releaseDate = releaseDate, category = category, page = page
     )
 
-    // Pagination methods
     override suspend fun getTrendingMovies(page: Int): List<Movie> {
         return try {
             val response = api.getTrending(apiKey, page)
