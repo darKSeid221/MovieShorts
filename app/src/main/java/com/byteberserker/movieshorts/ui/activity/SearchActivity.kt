@@ -48,9 +48,6 @@ class SearchActivity : BaseActivity() {
         adapter = SearchAdapter(
             onMovieClick = { movie ->
                 openMovieDetail(movie)
-            },
-            onShareClick = { movie ->
-                shareMovie(movie)
             }
         )
         binding.rvSearchResults.layoutManager = LinearLayoutManager(this)
@@ -98,17 +95,6 @@ class SearchActivity : BaseActivity() {
         startActivity(intent)
     }
 
-    private fun shareMovie(movie: Movie) {
-        val deepLink = "movieshorts://movie/${movie.id}?title=${movie.title}"
-        val shareText = getString(R.string.share_movie_text, movie.title, deepLink)
-        
-        val shareIntent = Intent(Intent.ACTION_SEND).apply {
-            type = "text/plain"
-            putExtra(Intent.EXTRA_TEXT, shareText)
-            putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_movie_subject))
-        }
-        startActivity(Intent.createChooser(shareIntent, getString(R.string.share_movie_chooser)))
-    }
 
     override fun onSupportNavigateUp(): Boolean {
         finish()

@@ -12,8 +12,7 @@ import com.byteberserker.movieshorts.domain.model.Movie
 
 class SearchAdapter(
     private val movies: MutableList<Movie> = mutableListOf(),
-    private val onMovieClick: (Movie) -> Unit,
-    private val onShareClick: (Movie) -> Unit
+    private val onMovieClick: (Movie) -> Unit
 ) : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
     inner class SearchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -21,7 +20,6 @@ class SearchAdapter(
         val title: TextView = view.findViewById(R.id.tvTitle)
         val releaseYear: TextView = view.findViewById(R.id.tvReleaseYear)
         val overview: TextView = view.findViewById(R.id.tvOverview)
-        val shareButton: ImageView = view.findViewById(R.id.btnShare)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
@@ -50,9 +48,7 @@ class SearchAdapter(
             onMovieClick(movie)
         }
 
-        holder.shareButton.setOnClickListener {
-            onShareClick(movie)
-        }
+
     }
 
     override fun getItemCount() = movies.size

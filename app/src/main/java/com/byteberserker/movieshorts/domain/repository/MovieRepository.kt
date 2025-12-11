@@ -16,4 +16,6 @@ interface MovieRepository {
     suspend fun removeBookmark(movieId: Int)
     suspend fun getAllBookmarks(): List<Movie>
     suspend fun isMovieBookmarked(movieId: Int): Boolean
+    
+    suspend fun getMovieDetails(movieId: Int): Movie?
 }

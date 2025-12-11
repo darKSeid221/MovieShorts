@@ -149,6 +149,23 @@ class MovieRepositoryImpl @Inject constructor(
         return bookmarkDao.getAllBookmarks().map { it.toDomainMovie() }
     }
 
+    override suspend fun getMovieDetails(movieId: Int): Movie? {
+        return try {
+            val dto = api.getMovieDetails(movieId, apiKey)
+            Movie(
+                id = dto.id ?: -1,
+                title = dto.title ?: "",
+                overview = dto.overview ?: "",
+                posterPath = dto.posterPath,
+                backdropPath = dto.backdropPath,
+                releaseDate = dto.releaseDate
+            )
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
     override suspend fun isMovieBookmarked(movieId: Int): Boolean {
         return bookmarkDao.isBookmarked(movieId)
     }

@@ -1,11 +1,13 @@
 package com.byteberserker.movieshorts.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.byteberserker.movieshorts.R
 import com.byteberserker.movieshorts.databinding.ActivityMovieDetailBinding
 import com.byteberserker.movieshorts.di.DaggerAppComponent
+import com.byteberserker.movieshorts.domain.repository.MovieRepository
 import com.byteberserker.movieshorts.domain.usecase.BookmarkUseCase
 import com.byteberserker.movieshorts.domain.model.Movie
 import kotlinx.coroutines.launch
@@ -17,6 +19,9 @@ class MovieDetailActivity : BaseActivity() {
 
     @Inject
     lateinit var bookmarkUseCase: BookmarkUseCase
+
+    @Inject
+    lateinit var movieRepository: MovieRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,17 +53,27 @@ class MovieDetailActivity : BaseActivity() {
             val movieTitle = data.getQueryParameter("title")
             
             if (movieId != null) {
-                val movie = Movie(
-                    id = movieId,
-                    title = movieTitle ?: "Movie",
-                    overview = "Loading...",
-                    posterPath = null,
-                    backdropPath = null,
-                    releaseDate = null
-                )
-                currentMovie = movie
-                setupUI(movie)
-                loadBookmarkStatus(movieId)
+                lifecycleScope.launch {
+                    val movie = movieRepository.getMovieDetails(movieId)
+                    if (movie != null) {
+                        currentMovie = movie
+                        setupUI(movie)
+                        loadBookmarkStatus(movieId)
+                    } else {
+                        // Fallback or error handling
+                        val partialMovie = Movie(
+                            id = movieId,
+                            title = movieTitle ?: "Movie",
+                             overview = "Failed to load details",
+                            posterPath = null,
+                            backdropPath = null,
+                            releaseDate = null
+                        )
+                         currentMovie = partialMovie
+                        setupUI(partialMovie)
+                        loadBookmarkStatus(movieId)
+                    }
+                }
             } else {
                 finish()
             }
@@ -91,6 +106,10 @@ class MovieDetailActivity : BaseActivity() {
         binding.btnBookmark.setOnClickListener {
             toggleBookmark()
         }
+
+        binding.btnShare.setOnClickListener {
+            currentMovie?.let { shareMovie(it) }
+        }
     }
 
     private fun toggleBookmark() {
@@ -109,5 +128,17 @@ class MovieDetailActivity : BaseActivity() {
             if (isBookmarked) R.drawable.ic_bookmark_filled
             else R.drawable.ic_bookmark
         )
+    }
+
+    private fun shareMovie(movie: Movie) {
+        val deepLink = "movieshorts://movie/${movie.id}?title=${movie.title}"
+        val shareText = getString(R.string.share_movie_text, movie.title, deepLink)
+
+        val shareIntent = Intent(Intent.ACTION_SEND).apply {
+            type = "text/plain"
+            putExtra(Intent.EXTRA_TEXT, shareText)
+            putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_movie_subject))
+        }
+        startActivity(Intent.createChooser(shareIntent, getString(R.string.share_movie_chooser)))
     }
 }
