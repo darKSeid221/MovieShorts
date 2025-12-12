@@ -7,4 +7,10 @@
     <color name="accent">#7C5CFF</color>
     <color name="accent2">#00D4FF</color>
     <color name="muted">#9AA0A6</color>
+    <color name="nav_purple">#6600FF</color>
+    <color name="text_hint">#88FFFFFF</color>
+    <color name="placeholder_bg">#222222</color>
+    <color name="overlay_dark">#66000000</color>
+    <color name="text_secondary">#CCFFFFFF</color>
+    <color name="background_dark">#101010</color>
 </resources>
